@@ -14,6 +14,7 @@ export const handler: Handler = async () => {
         console.log(`Invocation ${i} (jitter: ${jitter}ms)`);
         await lambda.send(new InvokeCommand({
             FunctionName: process.env.TEST_LAMBDA_NAME!,
+            InvocationType: 'Event',
             Payload: JSON.stringify({}),
         }));
         await setTimeout(INTERVAL_MS + jitter);
